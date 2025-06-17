@@ -35,4 +35,10 @@ class ProductController extends Controller
         }
         return redirect()->route('admin.dashboard')->with('success', '商品を追加しました');
     }
+
+    public function showProduct($id)
+    {
+        $product = Product::with('category', 'images')->findOrFail(($id));
+        return view ('admin.products.productDetail', compact('product'));
+    }
 }
